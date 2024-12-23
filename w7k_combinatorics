@@ -1,0 +1,41 @@
+import csv
+
+attributes = ["Health", "Renown", "Disposition", "Strength", "Charisma", "Endurance", "Intelligence", "Wisdom"] #Attributes
+check_types = ["Small Check", "Large Check"] #Type 1
+gain_types = ["Heavy Gain", "Small Gain"] #Type 2
+loss_types = ["Heavy Loss", "Small Loss"] #Type 3
+
+all_events = []
+
+for check_attr in attributes:
+    for check_type in check_types:
+        for gain_attr in attributes:
+            for gain_type in gain_types:
+                for loss_attr in attributes:
+                    for loss_type in loss_types:
+                        event = (
+                            (check_type, check_attr),
+                            (gain_type, gain_attr),
+                            (loss_type, loss_attr)
+                        )
+                        all_events.append(event)
+
+
+# Write to CSV file
+csv_file_path = "event_combinations.csv"
+with open(csv_file_path, mode='w', newline='') as file:
+    writer = csv.writer(file)
+
+    # Write header row
+    writer.writerow(["Check Type", "Check Attribute", "Gain Type", "Gain Attribute", "Loss Type", "Loss Attribute"])
+
+    # Write each event to a new row
+    for event in all_events:
+        check, gain, loss = event
+        writer.writerow([
+            check[0], check[1],
+            gain[0], gain[1],
+            loss[0], loss[1]
+        ])
+
+print(f"Event combinations written to {csv_file_path}")

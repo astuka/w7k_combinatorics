@@ -1,0 +1,2 @@
+# Combinatorics Script
+A small python script I used while making Wars of the Seven Kingdoms. Spits out a CSV of all possible combinations given a set of attributes and three different types. It still has the W7K data in it but should be easily modifiable. 
